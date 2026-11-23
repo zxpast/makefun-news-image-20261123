@@ -18,6 +18,36 @@
   8263a98a "Add .gitignore" first, because the API-created remote tree lacked
   .gitignore and the push helper requires the trees to match.
 
+## EVENING REFRESH — DONE 23 Nov ~21:15 WIB (evening-refresh builder)
+- Red-team F1–F5 + hydrogen F6–F11 applied (see BUILD-LOG.md for the
+  item-by-item record). Headline fixes: Card #12 "COP31 aftermath: what's
+  next?", Card #10 "Amit Shah launches projects" (complete phrase; the
+  red-team's longer wordings are 3 lines at capH 12.5 — width-checked).
+- F7: Card #9 RIYADH DROPPED — the Rabigh claim was Sunday 22 Nov
+  (Reuters 22 Nov; IANS "on Sunday said"; no Monday angle exists).
+  Replaced by Card #9 CONGO (cobalt export halt, Reuters Monday).
+  DATE CHECK gained "Rabigh claim Sun"; "Houthi strikes Fri" kept
+  (different event: Fri intercepts).
+- W6 cricket final: Wellington Test DRAWN (NZ 239/5, Mitchell 49*,
+  Phillips 26*; India 720/9 dec). Hero 2 + stats + kicker updated;
+  scene reads "239/5 FINAL — DRAW" (labelled score).
+- Hero 3 body: Zelenskyy's Monday confirmation (Ukraine sea drones hit
+  the corvette Merkury); source Arab News → AP.
+- Late-day briefs: BERLIN German PMI 55.0, WASHINGTON Dems 12 debates,
+  DHAKA first measles-free day in 8 months (toll 1,352). Totals still 33
+  stories; regions ASIA 13, AFRICA 2, EUROPE 9, MIDEAST 1, OCEANIA 4,
+  AMERICAS 4.
+- Card #11 Brentford v Everton kept as fixture (kickoff 20:00 UTC, result
+  not in at build time).
+- Render: 2 runs byte-identical, no WARN. md5
+  cedec2d34e28a39dba280e34c5eb1e04, sha256
+  88ff4db37fcdc49d7657d67bcd4ccac8e626851d650607e2f610fbf1ee7c3f2f,
+  95,341 bytes (zlib level 9, P9 tie-break). 300px legibility + digit gate
+  pass.
+- Pushed: (remote HEAD recorded below after push_gitdata.py)
+- DO NOT submit. DO NOT bundle. Main agent bundles (with --muse-usage) and
+  submits in the 24 Nov 07:00 WIB wave (slot 3). Deadline 25 Nov 07:00 WIB.
+
 ## REMAINS — evening refresh ~21:00 WIB (14:00 UTC)
 1. Cricket final result (NZ–India, Wellington Day 5) — update HERO 2 headline,
    body, scene score (currently 157/4 at lunch, six wickets to get), and STATS.
