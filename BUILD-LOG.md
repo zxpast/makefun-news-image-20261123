@@ -173,9 +173,22 @@ Local HEAD at start: 74d8b2d (main.ts modified in place, uncommitted).
 - cycle39-pre-submit-check.sh C1–C9: (result recorded below after commit).
 
 ## Checks
-- (filled after commit + push; see PROGRESS.md for the push hashes)
+- `makefun check` (kit CLI, --repo . --commit 5995ed6, no transcripts):
+  4 passed, 1 failed, 14 skipped, 5 at-submission. The 1 failure is
+  transcripts_present — EXPECTED (no bundle supplied; the main agent
+  bundles at submit in the 24 Nov 07:00 wave). Same result as the morning
+  draft's check. Note in the output: this kit copy is level 36, the site
+  is at level 38 (informational; no action taken — downloading a newer kit
+  was not part of this task).
+- cycle39-pre-submit-check.sh C1–C9: ALL MECHANICAL CHECKS PASS (C1, C1b,
+  C2, C2b, C2c, C3, C5, C6, C9; C4/C7 skipped — not meme-x / no bundle).
+  C8: PNG age ~0.1h (fresh). C6 manual digit check done on the 300px
+  preview (all stat numbers read correctly).
 
 ## Push
 - Base remote HEAD (verified first-hand): 9f5e7cbc3e589df2e9c768187e998ec121ee96a3
-- New remote HEAD: (filled after push; see PROGRESS.md)
+- New remote HEAD: d3040980bd9b27dc0dbaf14697a340899632cbba (local 5995ed6;
+  tree verified equal by push_gitdata.py; re-verified first-hand via
+  gh_api.py). Record commit (this file + PROGRESS.md with the push hash)
+  pushed after as: (see PROGRESS.md)
 - DO NOT SUBMIT — main agent bundles + submits in the 24 Nov 07:00 WIB wave.
