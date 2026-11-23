@@ -14,145 +14,145 @@ import { join } from 'node:path';
 import { deflateSync } from 'node:zlib';
 
 // ---------------------------------------------------------------- stories
-// DRAFT story set (morning pass, 23 Nov 00:16 UTC). EVERY item is re-verified
-// against live wires in the evening finalize; any item whose first report
-// turns out to be 22 Nov or earlier moves to DATE_CHECK and is replaced.
+// FINAL story set (evening research pass, 23 Nov ~09:45 WIB). Every item was
+// verified first-hand against live wires: it happened, or was first reported,
+// on Monday 23 November 2026 (in some time zone — see the footer). Items
+// that broke on 22 Nov or earlier are listed in DATE_CHECK, never as stories.
 // Sources are named per story; CLAIM marks single-sourced / one-side claims.
 
 const HEROES = [
   {
-    n: 1, place: 'GENEVA', beat: 'ARMS TALKS', scene: 'talks',
-    headline: 'Nations agree to keep talking on killer robots',
-    body: 'Countries at the UN conference agree to keep negotiating on lethal autonomous weapons. No ban agreed.',
-    source: 'UN / AP',
+    n: 1, place: 'NEW DELHI', beat: 'DIPLOMACY', scene: 'duet',
+    headline: "Modi, Shah hold talks in New Delhi",
+    body: "Nepal's PM Balen Shah holds delegation-level talks with PM Modi; pacts on energy, health and education.",
+    source: 'IANS',
   },
   {
-    n: 2, place: 'NEW DELHI', beat: 'DIPLOMACY', scene: 'duet',
-    headline: "Modi meets Nepal's Shah in New Delhi",
-    body: "Nepal's PM Balendra Shah meets PM Modi in New Delhi, reviewing the full range of India-Nepal ties.",
+    n: 2, place: 'WELLINGTON', beat: 'SPORT', scene: 'cricket',
+    headline: 'India six wickets from a win in Wellington',
+    body: 'New Zealand 157 for 4 at lunch on the final day, still 195 behind.',
     source: 'Reuters',
   },
   {
-    n: 3, place: 'WELLINGTON', beat: 'SPORT', scene: 'cricket',
-    headline: 'India piles up a record 720 in Wellington',
-    body: 'India declares on 720 for 9 at the Basin Reserve — a record Test total on New Zealand soil.',
-    source: 'AP',
+    n: 3, place: 'BENGHAZI', beat: 'DIPLOMACY', scene: 'port',
+    headline: 'UN urges probe into Benghazi attacks',
+    body: 'UN mission calls for an independent inquiry after drone boats hit a ship off Benghazi.',
+    source: 'Arab News',
   },
 ];
 
 const CARDS = [
   {
-    n: 4, place: 'SEOUL', beat: 'POLITICS', icon: 'exam',
-    headline: 'Korea education chief quits in AI scandal',
-    body: 'Education chief quits in AI cheating scandal.',
-    source: 'Yonhap',
-  },
-  {
-    n: 5, place: 'KYIV', beat: 'WAR', icon: 'building',
-    headline: '14 missing after drone hits homes near Kyiv',
-    body: 'Drone hits a building near Kyiv; 14 missing.',
+    n: 4, place: 'JAKARTA', beat: 'DISASTER', icon: 'alert',
+    headline: 'Search resumes at burned factory',
+    body: '3 dead, dozens missing after the fire.',
     source: 'Reuters',
   },
   {
-    n: 6, place: 'HELSINKI', beat: 'WAR', icon: 'ship',
-    headline: 'Cargo ship still burning off Finland',
-    body: 'Ship still on fire off Finland after attack.',
+    n: 5, place: 'DYMER', beat: 'WAR', icon: 'building',
+    headline: 'Dymer toll rises to seven',
+    body: "Toll up to 7 after Sunday's strike.",
     source: 'Reuters',
   },
   {
-    n: 7, place: 'LISBON', beat: 'PROTEST', icon: 'crowd',
-    headline: 'Thousands march in Lisbon on living costs',
-    body: 'Thousands march in Lisbon on living costs.',
-    source: 'AP',
+    n: 6, place: 'SYDNEY', beat: 'ECONOMY', icon: 'chart',
+    headline: 'Private sector shrinks fastest',
+    body: 'Flash PMI 46.1, lowest since Aug 2021.',
+    source: 'S&P Global',
   },
   {
-    n: 8, place: 'WASHINGTON', beat: 'POLITICS', icon: 'vote',
-    headline: 'Democrats clinch 258 seats, most since 1992',
-    body: 'Democrats win 258 House seats, most since 1992.',
-    source: 'AP',
-  },
-  {
-    n: 9, place: 'KINSHASA', beat: 'HEALTH', icon: 'virus',
-    headline: 'Fighting near Ebola zone hampers response',
-    body: 'Fighting near Ebola zone hampers response: WHO.',
-    source: 'WHO',
-  },
-  {
-    n: 10, place: 'JUBA', beat: 'CONFLICT', icon: 'alert',
-    headline: '24 civilians killed in South Sudan attack',
-    body: 'SPLA-IO attack leaves 24 civilians dead.',
-    source: 'AP',
-  },
-  {
-    n: 11, place: 'GULF OF OMAN', beat: 'SHIPPING', icon: 'ship',
-    headline: 'Tanker incident reported in Gulf of Oman',
-    body: 'UKMTO reports tanker incident in Gulf of Oman.',
-    source: 'UKMTO',
-  },
-  {
-    n: 12, place: 'CANBERRA', beat: 'DEFENCE', icon: 'shield',
-    headline: 'Australia rebukes US budget office on AUKUS',
-    body: 'Australia rebukes US budget office on AUKUS.',
+    n: 7, place: 'TOKYO', beat: 'MARKETS', icon: 'chart',
+    headline: 'Gold climbs, oil slips in thin trade',
+    body: 'Japan shut; Kospi down 2.8%, gold up.',
     source: 'Reuters',
   },
   {
-    n: 13, place: 'BEIJING', beat: 'TRADE', icon: 'chip',
-    headline: 'US seeks answers on Nvidia sales to China',
-    body: 'US seeks answers on Nvidia sales to China.',
+    n: 8, place: 'OKINAWA', beat: 'CULTURE', icon: 'building',
+    headline: 'Rebuilt Shuri Castle reopens',
+    body: 'Castle destroyed by fire in 2019 reopens.',
+    source: 'Nikkei',
+  },
+  {
+    n: 9, place: 'RIYADH', beat: 'WAR', icon: 'alert',
+    headline: 'Houthis claim refinery strike',
+    body: 'Riyadh has not confirmed the claim.',
+    source: 'Indian Express',
+  },
+  {
+    n: 10, place: 'ITANAGAR', beat: 'POLITICS', icon: 'building',
+    headline: 'Shah launches Rs 4,000-crore push',
+    body: 'Infra projects worth Rs 4,000 crore.',
+    source: 'IANS',
+  },
+  {
+    n: 11, place: 'LONDON', beat: 'SPORT', icon: 'crowd',
+    headline: 'Brentford host Everton tonight',
+    body: 'Brentford v Everton kicks off 20:00 UTC.',
     source: 'Reuters',
+  },
+  {
+    n: 12, place: 'ANTALYA', beat: 'CLIMATE', icon: 'crowd',
+    headline: 'COP31 talks left adrift',
+    body: 'Diplomats ask what comes next.',
+    source: 'Korea Times',
+  },
+  {
+    n: 13, place: 'SEATTLE', beat: 'POLITICS', icon: 'vote',
+    headline: 'Detained pair flew to a baptism',
+    body: 'Pair were flying to a family baptism.',
+    source: 'The Hindu',
   },
 ];
 
-// Briefs 14-37: one line each, "PLACE — one line. Source."
+// Briefs 14-33: one line each, "PLACE — one line. Source."
 const BRIEFS = [
-  ['NAYPYIDAW', 'Myanmar army-backed government calls ASEAN decision unfair and imbalanced. (AP)'],
-  ['WARSAW', 'Poland says Russia twice tried to kill a Ukrainian-American rapper. (Reuters)'],
-  ['ISLAMABAD', 'Pakistan FM hopeful for a US-Iran deal, warns against a prolonged war. (Reuters)'],
-  ['HORMUZ', 'A swimmer crosses the Strait of Hormuz to highlight the war toll on animals. (AFP)'],
-  ['NEW DELHI', 'Amit Shah stresses self-reliance and cooperative development in Arunachal. (PTI)'],
-  ['GOA', 'IFFI 2026 hosts a BRICS roundtable to strengthen film industry ties. (PTI)'],
-  ['NEW DELHI', 'Rajya Sabha MP Ramrao Wadkute dies of a cardiac arrest in Delhi. (PTI)'],
-  ['PATNA', 'PM Modi inaugurates an AI centre at IIT Patna. (PTI)'],
-  ['HYDERABAD', 'University students keep protesting, demanding a faculty member be sacked. (PTI)'],
-  ['MUMBAI', 'Six sent to a juvenile home after an assault; an SP leader seeks an age change. (PTI)'],
-  ['KOTA', 'At least nine killed as a vehicle carrying pilgrims rams a truck in Rajasthan. (PTI)'],
-  ['SRINAGAR', "Kashmir's famed saffron fields used as dumping grounds for three years, Mufti says. (PTI)"],
-  ['WELLINGTON', 'Jurel sees a chance for India despite a slowing Basin Reserve pitch. (PTI)'],
-  ['MANCHESTER', 'Liverpool thrash 10-man Man Utd in Pochettino’s first match. (AP)'],
-  ['LONDON', 'Anupama defends her IBSF World Women’s Snooker Championship title. (PTI)'],
-  ['NEW DELHI', 'India and Bulgaria discuss bilateral ties, IMEC and the Black Sea. (PTI)'],
-  ['RIYADH', 'Saudi-led coalition says it intercepted a Houthi missile in the west. (Reuters)'],
-  ['JAKARTA', 'Search resumes at the burned candy factory; dozens still unaccounted for. (Reuters)'],
-  ['MANILA', 'World chess championship: the geniuses who wield their magic. (PTI)'],
-  ['TOKYO', 'Nvidia row: fresh details tie Alice Huang to a chip-diversion network. (Reuters)'],
-  ['ANKARA', 'COP31 delegates weigh a new draft that makes no mention of fossil fuels. (Reuters)'],
-  ['GENEVA', 'UN climate talks break down without an overarching agreement. (Reuters)'],
-  ['KABUL', 'Afghanistan watches the Gulf war as oil prices climb. (Reuters)'],
-  ['CAIRO', 'Egypt urges restraint as the Gulf conflict enters a crucial stage. (Reuters)'],
+  ['WELLINGTON', 'NZ retail sales jump 2.2% in Q3. (Stats NZ)'],
+  ['TOKYO', 'Sanrio bets on games to expand global reach. (Nikkei)'],
+  ['JERUSALEM', 'Ben-Gvir funds four new firefighting helicopters. (Jerusalem Post)'],
+  ['MANCHESTER', 'Pochettino questions Yoro red card after 4-0 loss. (India Today)'],
+  ['MUMBAI', 'Tata Sons gears up for a go-public decision this week. (TOI)'],
+  ['HYDERABAD', 'Students keep up protest over faculty remarks. (IANS)'],
+  ['GENEVA', 'Gukesh and Sindarov hold media day; Game 1 Tuesday. (Chess.com)'],
+  ['CANBERRA', "Albanese blames COP31 failure on 'difficult times'. (AFP)"],
+  ['LONDON', 'Gold rises 1.1% to $3,577 as haven demand grows. (Reuters)'],
+  ['LONDON', 'Brent crude slips 0.9% to $91.78. (Reuters)'],
+  ['SEOUL', 'Kospi opens 2.8% lower; Seoul readies stabilisation fund. (Reuters)'],
+  ['NEW YORK', 'Nasdaq futures jump 2.8%. (Reuters)'],
+  ['TOKYO', 'Japan shut for Labor Thanksgiving Day. (TSE)'],
+  ['TOKYO', 'Japan decarb agency invests in US metal recycler. (Nikkei)'],
+  ['NEW DELHI', "Shah's visit is his first bilateral trip abroad as PM. (IANS)"],
+  ['SYDNEY', 'ASX 200 erases early losses to end flat. (Reuters)'],
+  ['NEW DELHI', 'India, Nepal sign MoUs on education, health, agriculture. (MEA)'],
+  ['LONDON', 'Silver climbs 2.2% to $42.11. (Reuters)'],
+  ['NEW YORK', 'WTI crude $82.88, down 0.9%. (Reuters)'],
+  ['GOA', "'Ramayana' director Tiwari hails film festivals at IFFI. (ANI)"],
 ];
 
 const STATS = [
-  ['720', "runs: India's record Test total"],
-  ['258', 'House seats, most since 1992'],
-  ['24', 'civilians killed in S. Sudan'],
-  ['14', 'missing after Kyiv drone hit'],
-  ['50', 'workers missing in factory fire'],
-  ['2', 'injured in Bahrain strikes'],
+  ['157-4', 'New Zealand at lunch, day 5'],
+  ['46.1', 'Australia flash PMI, Nov'],
+  ['+2.2%', 'NZ retail sales, Q3'],
+  ['7', 'Dymer toll after drone strike'],
+  ['$3,577', 'gold, up 1.1%'],
+  ['+2.8%', 'Nasdaq futures'],
 ];
 
+// Order is interleaved (not sorted): the tiny AFRICA segment sits between two
+// wide ones, so its label overflows onto dark colours and stays readable.
 const REGIONS = [
-  ['ASIA', 13], ['EUROPE', 6], ['AMERICAS', 6],
-  ['MIDEAST', 6], ['AFRICA', 3], ['OCEANIA', 3],
+  ['ASIA', 14], ['AFRICA', 1], ['EUROPE', 8],
+  ['MIDEAST', 2], ['OCEANIA', 5], ['AMERICAS', 3],
 ];
 
 // Stories excluded on purpose: they broke on another day.
 const DATE_CHECK =
-  'Left out on purpose — they broke before Monday: COP31 collapse (Sun 22 Nov) · ' +
-  'Iran strikes Bahrain (Sat 21 Nov) · El Chapo Isidro captured (Fri 20 Nov) · ' +
-  'Indonesia factory fire (Sat 21 Nov) · Liverpool beat Man Utd (Sun 22 Nov).';
+  'Left out — they broke before Monday: COP31 collapse Sun · killer robots Sat · ' +
+  'India 720 Sun · Liverpool 4-0 Sun · Dems 258 Sun · WHO Ebola plea Sun · Sparta II Sat · ' +
+  'Lisbon march Sat · Korea minister Sun · Anupama Sat · Wadkute Sun · Trump–Kim Sat · Sea-Tac Sat · ' +
+  'Sharmila Sun · India–Bulgaria Sat · Houthi strikes Fri · Myanmar reply Sat';
 
 const KICKER =
-  'UN keeps talking on killer robots · Modi meets Nepal’s Shah · India piles up a record 720 in Wellington';
+  "Modi meets Nepal's Shah · India six wickets from victory · UN urges Benghazi probe";
 
 // ------------------------------------------------------------------- font
 // A single-stroke vector font, authored in this session. Grid: x 0..4,
@@ -571,8 +571,24 @@ function drawScene(kind: string, x: number, y: number, w: number, h: number): vo
     poly([[x + w * 0.28, y + h * 0.2], [x + w * 0.32, y + h * 0.2], [x + w * 0.32, y + h * 0.62], [x + w * 0.28, y + h * 0.62]], GOLD);
     line(x + w * 0.55, y + h * 0.15, x + w * 0.72, y + h * 0.55, 7, [210, 170, 120]);
     circle(x + w * 0.8, y + h * 0.3, 7, RED);
-    drawText('720/9', x + w * 0.06, y + h * 0.5, 30, WHITE, 1.5);
-    drawText('RECORD TOTAL', x + w * 0.06, y + h * 0.72, 11, WHITE, 1.3);
+    drawText('157/4', x + w * 0.06, y + h * 0.5, 30, WHITE, 1.5);
+    drawText('SIX WICKETS TO GET', x + w * 0.06, y + h * 0.72, 11, WHITE, 1.3);
+  } else if (kind === 'port') {
+    // Benghazi port at night: sky, sea, a merchant ship, smoke, drone boats.
+    rect(x, y, w, h, [38, 68, 110]);
+    rect(x, y + h * 0.55, w, h * 0.45, [24, 48, 80]);
+    circle(x + w * 0.85, y + h * 0.16, 8, [240, 230, 200]);
+    circle(x + w * 0.3, y + h * 0.3, 9, [200, 200, 200]);
+    circle(x + w * 0.38, y + h * 0.24, 11, [210, 210, 210]);
+    circle(x + w * 0.48, y + h * 0.18, 8, [220, 220, 220]);
+    rect(x + w * 0.2, y + h * 0.42, w * 0.16, h * 0.1, RED);
+    rect(x + w * 0.4, y + h * 0.42, w * 0.16, h * 0.1, GOLD);
+    rect(x + w * 0.6, y + h * 0.42, w * 0.16, h * 0.1, TEAL);
+    poly([[x + w * 0.12, y + h * 0.52], [x + w * 0.88, y + h * 0.52], [x + w * 0.8, y + h * 0.68], [x + w * 0.2, y + h * 0.68]], [30, 30, 30]);
+    poly([[x + w * 0.1, y + h * 0.78], [x + w * 0.18, y + h * 0.78], [x + w * 0.14, y + h * 0.72]], [30, 30, 30]);
+    poly([[x + w * 0.82, y + h * 0.78], [x + w * 0.9, y + h * 0.78], [x + w * 0.86, y + h * 0.72]], [30, 30, 30]);
+    rect(x, y + h * 0.88, w, h * 0.12, INK);
+    drawTextCentered('DRONE BOATS OFF BENGHAZI', x + w / 2, y + h * 0.97, 9, WHITE, 1.4);
   } else if (kind === 'court') {
     poly([[x + w * 0.1, y + h * 0.12], [x + w * 0.5, y + h * 0.02], [x + w * 0.9, y + h * 0.12]], NAVY);
     rect(x + w * 0.14, y + h * 0.14, w * 0.72, h * 0.08, NAVY);
@@ -645,6 +661,9 @@ function drawIcon(kind: string, cx: number, cy: number, s: number): void {
     R(-12, -12, 24, 24, INK);
     R(-6, -6, 12, 12, TEAL);
     for (let i = -1; i <= 1; i++) { L(i * 8, -12, i * 8, -18, 2, INK); L(i * 8, 12, i * 8, 18, 2, INK); L(-12, i * 8, -18, i * 8, 2, INK); L(12, i * 8, 18, i * 8, 2, INK); }
+  } else if (kind === 'chart') {
+    R(-14, 8, 5, 8, TEAL); R(-5, 2, 5, 14, TEAL); R(4, -6, 5, 22, TEAL); R(13, -12, 5, 28, RED);
+    L(-16, 16, 18, 16, 1.6, INK);
   } else {
     circle(cx, cy, 12, GOLD);
     circle(cx, cy, 5, WHITE);
@@ -689,10 +708,15 @@ function mapXY(lon: number, lat: number, mx: number, my: number, mw: number, mh:
   return [mx + ((lon + 180) / 360) * mw, my + ((80 - lat) / 140) * mh];
 }
 
+// Pins in story order 1-13: Delhi, Wellington, Benghazi, Jakarta, Dymer,
+// Sydney, Tokyo, Okinawa, Riyadh, Itanagar, London, Antalya, Seattle.
+// A few pins are nudged a few degrees ("positions approximate") so no two
+// overlap on this coarse grid: Delhi 77.2->75.5, Itanagar 93.6->96.0,
+// Antalya 30.7->40.0.
 const PINS: [number, number][] = [
-  [6.1, 46.2], [77.2, 28.6], [174.8, -41.3], [127.0, 37.5], [30.5, 50.4],
-  [24.9, 60.2], [-9.1, 38.7], [-77.0, 38.9], [15.3, -4.3], [31.6, 4.9],
-  [59.5, 24.0], [149.1, -35.3], [116.4, 39.9],
+  [75.5, 28.6], [174.8, -41.3], [20.1, 32.1], [106.8, -6.2], [30.0, 50.8],
+  [151.2, -33.9], [139.7, 35.7], [127.7, 26.2], [46.7, 24.7], [96.0, 27.1],
+  [-0.1, 51.5], [40.0, 36.9], [-122.3, 47.6],
 ];
 
 // ------------------------------------------------------------------ layout
@@ -739,9 +763,16 @@ function render(): void {
   const regTotal = REGIONS.reduce((a, [, n]) => a + n, 0);
   let rx = MX;
   const regColors: RGB[] = [NAVY, RED, TEAL, GOLD, [90, 60, 120], [40, 110, 60]];
+  // Two passes: all bars first, then all labels — a label may overflow its
+  // narrow bar, and must be drawn on top of the neighbouring bars, not under.
   REGIONS.forEach(([name, n], i) => {
     const rw = (PW * n) / regTotal;
     rect(rx, regY, rw - 2, 20, regColors[i % regColors.length]);
+    rx += rw;
+  });
+  rx = MX;
+  REGIONS.forEach(([name, n]) => {
+    const rw = (PW * n) / regTotal;
     drawTextCentered(`${name} ${n}`, rx + rw / 2, regY + 15, 10.5, WHITE, 1.2);
     rx += rw;
   });
@@ -821,8 +852,8 @@ function render(): void {
   hline(bandY + 22, INK, 1);
   const colW = (bw - 16) / 2;
   BRIEFS.forEach((b, i) => {
-    const col = i < 12 ? 0 : 1;
-    const row = i % 12;
+    const col = i < 10 ? 0 : 1;
+    const row = i % 10;
     const x = bx + col * (colW + 16);
     const y = bandY + 30 + row * 20;
     const text = `${14 + i}. ${b[0]} — ${b[1]}`;
@@ -831,13 +862,13 @@ function render(): void {
 
   // DATE CHECK + footer.
   const dcY = bandY + bandH + 8;
-  rect(MX, dcY, PW, 32, WHITE);
-  rect(MX, dcY, PW, 1.5, RED); rect(MX, dcY + 30.5, PW, 1.5, RED);
-  rect(MX, dcY, 1.5, 32, RED); rect(MX + PW - 1.5, dcY, 1.5, 32, RED);
+  rect(MX, dcY, PW, 44, WHITE);
+  rect(MX, dcY, PW, 1.5, RED); rect(MX, dcY + 42.5, PW, 1.5, RED);
+  rect(MX, dcY, 1.5, 44, RED); rect(MX + PW - 1.5, dcY, 1.5, 44, RED);
   drawText('DATE CHECK — ', MX + 8, dcY + 13, 9.5, RED, 1.4);
   const dcX = MX + 8 + textWidth('DATE CHECK — ', 9.5);
-  drawPara(DATE_CHECK, dcX, dcY + 13, PW - 16 - textWidth('DATE CHECK — ', 9.5), 9.5, 11.5, INK, 1, 2);
-  const ftY = dcY + 40;
+  drawPara(DATE_CHECK, dcX, dcY + 13, PW - 16 - textWidth('DATE CHECK — ', 9.5), 9.5, 11.5, INK, 1, 3);
+  const ftY = dcY + 52;
   drawTextCentered(
     'Every story here happened, or was first reported, on Monday 23 November 2026, in some time zone.',
     W / 2, ftY, 9, INK, 1,
