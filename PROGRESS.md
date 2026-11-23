@@ -13,7 +13,10 @@
   entry.png 90,150 bytes, 1024x1024, no WARN. Viewed at 2x/8x zoom: heroes,
   cards, briefs, map pins, region strip, DATE CHECK all legible.
 - Committed + pushed to https://github.com/zxpast/makefun-news-image-20261123
-  (commit hash in git log).
+  (local 473da16; remote HEAD 55dd5bf0c774bb8609e795af1a470f2a9ffafd4f,
+  tree verified equal to local). Note: remote gained an extra commit
+  8263a98a "Add .gitignore" first, because the API-created remote tree lacked
+  .gitignore and the push helper requires the trees to match.
 
 ## REMAINS — evening refresh ~21:00 WIB (14:00 UTC)
 1. Cricket final result (NZ–India, Wellington Day 5) — update HERO 2 headline,
